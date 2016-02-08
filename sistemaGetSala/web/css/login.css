@@ -1,0 +1,175 @@
+
+
+  * {margin: 0;
+     padding: 0;
+     
+  }
+  
+textarea:focus, input:focus, select:focus {
+    outline: 0;
+}
+  body{background: #fff; 
+       font-size: 100%;}
+
+  header { 
+	  width: 100%; 
+	  position: relative;
+	  top: 0;
+	  right: 0;
+	  left: 0;
+          background: #ebebeb;
+	  z-index: 2;
+	  margin-bottom: 2%; 
+	  overflow: hidden;
+          box-shadow: 0px 3px 8px #000;
+  }
+  
+
+  header img{
+  	width: 25%;
+  	float: left;
+  	margin: 0% 0 2% 15%;
+  	height: 150px;
+  }
+
+  article{
+    background: #fff;
+    width: 40%;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    float: left;
+    margin: 3% 0% 7% 30%;
+  }
+  
+  article section {
+    float: left;
+    margin: 1% ;
+    width: 98%;     
+  }
+
+
+
+
+
+  article section h2{
+    margin-bottom: 2%;
+    text-align: center;
+  }
+
+
+  article section label{
+    margin: 3% 0% 1% 7%;
+    font-weight: bold;
+  }
+  
+    article section form{
+      float: left;
+      margin: 5%;
+      width: 85%;
+  }
+
+
+  
+
+   article section form input{
+      float: right;
+      margin: 2%;
+      width: 90%;
+      height: 30px; 
+  }
+
+  article section  .btn{
+      float: right;
+      margin: 3% 2% ;
+      width: 20%;
+      height: 30px; 
+  }
+
+   article section a{
+   	float: left;
+   	margin: 3.5% 0 0 7%;
+   }
+
+    article section .label {
+    	width: 20%;
+    	float: left;
+    	margin: -5.5% 0 0 55%;
+    }
+
+    article section .check{
+    	margin: 3% 0 0 20%;
+    	float: left;
+    	width: 4%;
+    }
+
+
+  footer p{
+    width: 100%;
+    height: 103px;
+    float: left;
+    background: #000;
+    
+  }
+  
+ 
+
+
+
+/*
+* Estiliza o centro dá página login e partde de cadastro
+*
+*/
+
+
+
+@media screen and (max-width: 400px) {
+
+}
+
+@media screen and (min-width: 401px) {
+
+}
+
+@media screen and (min-width: 594px) {
+
+}
+
+@media screen and (min-width: 673px) {
+
+}
+
+@media screen and (min-width: 783px) {
+
+}
+
+@media screen and (min-width: 810px) {
+
+}
+
+@media screen and (min-width: 846px) {
+
+}
+
+@media screen and (min-width: 1008px) {
+
+}
+
+@media screen and (min-width: 1040px) {
+
+}
+
+@media screen and (min-width: 1080px) {
+
+}
+
+@media screen and (min-width: 1110px) {
+
+}
+
+@media screen and (min-width: 1218px) {
+
+}
+
+@media screen and (min-width: 1260px) {
+
+}
