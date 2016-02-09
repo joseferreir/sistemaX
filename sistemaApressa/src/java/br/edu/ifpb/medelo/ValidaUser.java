@@ -15,7 +15,7 @@ import java.util.regex.Pattern;
 public class ValidaUser {
 
     private final static String EXPRESSAO_REGULAR_SENHA_FORTE = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,16}$";
-    private final static String EXPRESSAO_REGULAR_EMAIL = "^[\\w\\.-]+@([\\w\\-]+\\.)+[A-Z]{2,4}$";
+    private final static String EXPRESSAO_REGULAR_EMAIL = "^[\\w\\.-]+@([\\w\\-]+\\.)+[A-Z]{2,3}$";
     private final static String EXPRESSAO_REGULAR_MATRICULA = "[0-9]{6}";
 
     public static boolean validaPassword(final String password) {
@@ -44,10 +44,8 @@ public class ValidaUser {
 
         Matcher matcher = pattern.matcher(matricula);
         if (matcher.find() && matcher.group().equals(matricula)) {
-            System.out.println("matricula válido");
             return true;
         } else {
-            System.out.println("mat inválido");
             return false;
         }
     }

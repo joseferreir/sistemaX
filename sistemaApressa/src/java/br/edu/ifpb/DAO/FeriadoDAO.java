@@ -5,17 +5,23 @@
  */
 package br.edu.ifpb.DAO;
 
-
 import br.edu.ifpb.conexao.ConexaoBD;
 import br.edu.ifpb.interfaces.InterfaceFeriadoDAO;
 import br.edu.ifpb.medelo.Feriado;
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -105,11 +111,8 @@ public class FeriadoDAO implements InterfaceFeriadoDAO {
             ResultSet result = stm.executeQuery();
 
             while (result.next()) {
-                f = new Feriado();
-
-                f.setNome(result.getString("nome"));
-                f.setData(result.getDate("data").toLocalDate());
-
+                
+                      return preencherFeriado(result);
             }
 
         } catch (SQLException e) {
@@ -120,7 +123,7 @@ public class FeriadoDAO implements InterfaceFeriadoDAO {
         } finally {
             ConexaoBD.fecharConexao(conn);
         }
-        return f;
+       return null;
     }
 
     @Override
@@ -135,9 +138,8 @@ public class FeriadoDAO implements InterfaceFeriadoDAO {
             ResultSet result = stm.executeQuery();
 
             while (result.next()) {
-                Feriado f = new Feriado();
-                f.setData(result.getDate("data").toLocalDate());
-                f.setNome(result.getString("nome"));
+                Feriado f = preencherFeriado(result);
+               
                 feriados.add(f);
             }
 
@@ -161,8 +163,7 @@ public class FeriadoDAO implements InterfaceFeriadoDAO {
         PreparedStatement stm = null;
         String sql = "INSERT INTO Feriado (data,nome)"
                 + " VALUES (?, ?)";
-        
-        
+
         try {
 
             conn = ConexaoBD.abrirConexao();
@@ -215,4 +216,80 @@ public class FeriadoDAO implements InterfaceFeriadoDAO {
         return false;
     }
 
+    public boolean removerData(Feriado feriado) {
+        Connection conn = null;
+        try {
+            conn = ConexaoBD.abrirConexao();
+            String sql = "DELETE FROM Feriado WHERE data = ?";
+            PreparedStatement stm = conn.prepareStatement(sql);
+            stm.setDate(1, Date.valueOf(feriado.getData()));
+            stm.executeUpdate();
+
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(FeriadoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return false;
+
+    }
+ public List<Feriado> buscarAtributos(Map<String, String> map) {
+
+        try {
+
+           Connection conn = null;
+        PreparedStatement stm; 
+               
+            
+
+            StringBuilder sql = new StringBuilder("SELECT * FROM feriado WHERE ");
+
+            Set<String> keys = map.keySet();
+            Iterator<String> it = keys.iterator();
+
+            String key;
+            while (it.hasNext()) {
+                key = it.next();
+                sql.append(key);
+                sql.append(" = ");
+                sql.append("'").append(map.get(key)).append("'");
+                if (it.hasNext()) {
+                    sql.append(" AND ");
+                }
+            }
+             ConexaoBD.abrirConexao();
+            stm = conn.prepareStatement(sql.toString());
+
+            ResultSet rs = stm.executeQuery();
+            List<Feriado> feriados = new ArrayList<>();
+
+            while (rs.next()) {
+                Feriado feriado = preencherFeriado(rs);
+
+                feriados.add(feriado);
+            }
+
+            return feriados;
+        } catch (SQLException | ClassNotFoundException ex) {
+            ex.printStackTrace();
+
+            return null;
+        }
+}
+
+    private Feriado preencherFeriado(ResultSet rs) {
+           Feriado feriado = new Feriado();
+
+        try {
+            feriado.setNome(rs.getString("nome"));
+            feriado.setData(rs.getDate("data").toLocalDate());
+            
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+
+        return feriado;
+    }
 }

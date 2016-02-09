@@ -5,60 +5,48 @@
  */
 package br.edu.ifpb.controle;
 
+import br.edu.ifpb.execao.FeriadoException;
 import static br.edu.ifpb.medelo.ConversoDeStringEmLocalDate.converteStringEmLocalDate;
 import br.edu.ifpb.medelo.Feriado;
-import java.io.File;
-import java.io.FileNotFoundException;
+import br.edu.ifpb.medelo.ValidaFeriado;
+import java.io.InputStream;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import javafx.util.converter.LocalDateTimeStringConverter;
-import javax.swing.JOptionPane;
 
 /**
  *
  * @author José
  */
 class ImpoteCsv {
-     public   List<Feriado> importeCsv(File arquivo){
-        List<Feriado> feriados = new ArrayList<Feriado>();
-          try{
-            
-            //cria um scanner para ler o arquivo
-            Scanner leitor = new Scanner(arquivo);
-            
-            //variavel que armazenara as linhas do arquivo
-            String linhasDoArquivo = new String();
-            
-            //ignora a primeira linha do arquivo
-            leitor.nextLine();
-            
-            //percorre todo o arquivo
-            while(leitor.hasNext()){
-                
-                //recebe cada linha do arquivo
-                linhasDoArquivo = leitor.nextLine();
-                
-                //separa os campos entre as virgulas de cada linha
-                String[] valoresEntreVirgulas = linhasDoArquivo.split(",");
-                //-----------------------
-            LocalDate  data = ConversoDeStringEmLocalDate.converteStringEmLocalDate(valoresEntreVirgulas[0]);
-                String nome = valoresEntreVirgulas[1];
-                JOptionPane.showMessageDialog(null, nome+"---"+ data);
-                
-               Feriado f = new Feriado(data,nome);
-               feriados.add(f);
-            }
-            return feriados;
-        
-        }catch(FileNotFoundException e){
-            
-        }
-        return null;
 
+    public List<Feriado> importeCsv(InputStream inputferiados, boolean sobrescrever) {
+        Scanner in = new Scanner(inputferiados, "UTF-8");
+        String s;
+        List<Feriado> feriados = new ArrayList<>();
+
+        while (in.hasNext()) {
+            String linha = in.nextLine();
+            String[] dados = linha.split(",");
+
+            Feriado feriado = new Feriado();
+
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+            try {
+                feriado.setData(converteStringEmLocalDate(dados[0]));
+                feriado.setNome(dados[1]);
+                feriados.add(feriado);
+            } catch (Exception ex) {
+                throw new FeriadoException();
+            }
+            if (!ValidaFeriado.verificarFeriado(feriado)) {
+                throw new FeriadoException();
+            }
+
+        }
+
+        return feriados;
     }
+
 }

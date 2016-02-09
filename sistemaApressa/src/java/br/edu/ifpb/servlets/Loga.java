@@ -43,26 +43,22 @@ public class Loga extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
           response.setContentType("text/html;charset=UTF-8");
-          System.err.println("rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrreeeeeeeeeee;;;;;;;;;;;;;;;;");
-
+          
         String login = request.getParameter("login");
         String senha = request.getParameter("senha");
-        JOptionPane.showMessageDialog(null, "loga" + login + " " + senha);
-
+        
         Usuario usuario;
         ControleUsuario a = new ControleUsuario();
         usuario = a.login(login, senha);
-        JOptionPane.showMessageDialog(null, "logo " + usuario);
+       
         if (usuario != null) {
             HttpSession session = request.getSession();
-            JOptionPane.showMessageDialog(null, "passso 1");
             session.setAttribute("user", usuario);
             response.sendRedirect("home.jsp");
-            JOptionPane.showMessageDialog(null, "passo 2" + usuario);
-            JOptionPane.showMessageDialog(null, "passso 3");
+           
         } else {
             response.sendRedirect("index.jsp");
-            JOptionPane.showMessageDialog(null, "passso else");
+            
         }
     }
 

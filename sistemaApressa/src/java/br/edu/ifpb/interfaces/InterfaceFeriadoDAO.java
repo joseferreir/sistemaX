@@ -8,6 +8,7 @@ package br.edu.ifpb.interfaces;
 
 import br.edu.ifpb.medelo.Feriado;
 import java.io.File;
+import java.io.InputStream;
 import java.util.List;
 
 
@@ -25,8 +26,9 @@ public interface InterfaceFeriadoDAO {
 
     public List<Feriado> buscarTodos();
 
-    public boolean importFeriado(List<Feriado> feriados);
+    public boolean importFeriado(List<Feriado> feriado);
 
     public boolean remover(String nome);
-
+    
+    public boolean removerData(Feriado feriado);
 }

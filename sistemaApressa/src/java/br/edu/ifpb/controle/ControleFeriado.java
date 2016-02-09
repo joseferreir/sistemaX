@@ -1,18 +1,19 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package br.edu.ifpb.controle;
 
 import br.edu.ifpb.factoy.DAOFactoy;
 import br.edu.ifpb.medelo.Feriado;
 
 import java.io.File;
+import java.io.InputStream;
+import java.text.SimpleDateFormat;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class ControleFeriado {
-
+    
+    
     public boolean adiciona(Feriado feriado) {
         return DAOFactoy.criarFactoy().criaFeriadoDAO().adiciona(feriado);
     }
@@ -30,9 +31,9 @@ public class ControleFeriado {
         return DAOFactoy.criarFactoy().criaFeriadoDAO().buscarTodos();
     }
 
-    public boolean importFeriado(File arquivo) {
+    public boolean importFeriado(InputStream arquivo, boolean sobrescrever) {
        ImpoteCsv c = new ImpoteCsv();
-        return DAOFactoy.criarFactoy().criaFeriadoDAO().importFeriado(c.importeCsv(arquivo));
+        return DAOFactoy.criarFactoy().criaFeriadoDAO().importFeriado(c.importeCsv(arquivo, sobrescrever));
     }
 
     public boolean remover(String nome) {
