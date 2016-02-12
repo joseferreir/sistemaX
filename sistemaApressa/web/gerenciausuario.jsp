@@ -1,3 +1,4 @@
+<%@page import="br.edu.ifpb.medelo.Usuario"%>
 <html lang="PT-BR">  <!--  -->
     <head>
         <meta charset="UTF-8">
@@ -8,7 +9,9 @@
         <meta name="" content="">
         <title>Gerenciamento de Usuários</title>
 
-
+ <%
+        Usuario usuario = (Usuario) session.getAttribute("user");
+    %>
         <link rel="stylesheet" href="css/style.css" type="text/css">
         <style type="text/css">
             @import "css/jquery.dataTables.css";
@@ -46,7 +49,7 @@
 
             <div class="content-right">
                 <h3> Nome Usuário</h3>
-                <img src="img/user.jpg" title="Foto do usuário">
+                <img src=${usario.foto}>
                 <ul >
                     <li><a href="" class="perfil">Editar Perfil</a></li>
                     <li><a href="" class="exit">Sair</a></li>
@@ -101,11 +104,13 @@
                 <input  type="text" placeholder="Ex: 123456" name="matricula" id="matricula"> 
 
                 <label class="tipo" >Tipo</label>
-                <select  type="select" name="papel"  id="tipo" > 
+                <select  type="select" name="papel"  id="papel" > 
                     <option value="">Selecione</option>
-                    <option value="Aministrador">Administrador</option>
-                    <option value="Aluno">Aluno</option>
-                    <option value="AssistenteSala">AssistenteDeSala</option>
+                    <option value="ADMISTRAD0R">ADMISTRAD0R</option>
+                    <option value="ALUNO">ALUNO</option>
+                    <option value="ASSISTENTE_SALA">ASSISTENTE_SALA</option>
+                     <option value="PROFESSOR">PROFESSOR</option>
+                      <option value="MONITOR">MONITOR</option>
                 </select>
 
 

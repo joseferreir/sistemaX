@@ -3,7 +3,11 @@
     Created on : 27/01/2016, 16:59:14
     Author     : Zilderlan
 --%>
-
+<%@page import="br.edu.ifpb.medelo.Usuario"%>
+<%
+        Usuario usuario = (Usuario) session.getAttribute("user");
+        String a = usuario.getFoto();
+    %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <html lang="PT-BR">  <!--  -->
     <head>
@@ -32,14 +36,14 @@
         	<div class="content-top">
         		<div class="content-left">
         			<h2> Nome do Sistema</h2>
-        			<img src="img/footer2.png" title="">
-        			<h3> Logado como <code>Codigo</code></h3>
+                                <img src="img/footer2.png" id="fotoperfil" >
+        			<h3> ${usuario.nome} <code>Codigo</code></h3>
 
         		</div>
 
         		<div class="content-right">
-        			<h3> Nome Usuário</h3>
-        			<img src="img/user.jpg" title="Foto do usuário">
+        			<h3> ${usuario.nome}</h3>
+        			<img src=${usuario.foto}>
         			<ul >
         				<li><a href="" class="perfil">Editar Perfil</a></li>
         				<li><a href="" class="exit">Sair</a></li>

@@ -23,7 +23,7 @@ import javax.swing.JOptionPane;
  *
  * @author José
  */
-@WebServlet(name = " CadastroUser",urlPatterns = {"/CadastroUser"})
+@WebServlet(name = " CadastroUser", urlPatterns = {"/CadastroUser"})
 public class CadastroUser extends HttpServlet {
 
     @Override
@@ -42,26 +42,25 @@ public class CadastroUser extends HttpServlet {
 
             String matricula = request.getParameter("matricula");
 
-            String tipo = request.getParameter("papel");
-
+            String papel = request.getParameter("papel");
+            
             String senha = request.getParameter("senha");
 
             String foto = request.getParameter("foto");
             ServletContext context = getServletContext();
             String fotoperfil = context.getRealPath(foto);
 
-            
-            if(ValidaUser.validaPassword(senha)){
-            Usuario usuario = new Usuario(matricula, nome, email, senha, fotoperfil, true, PapelUser.valueOf(tipo));
+            if (ValidaUser.validaPassword(senha)) {
+                Usuario usuario = new Usuario(matricula, nome, email, senha, fotoperfil, true, PapelUser.valueOf(papel));
 
-            DAOFactoy.criarFactoy().criaUsuarioAdmDAO().addUsuario(usuario);
-            HttpSession session = request.getSession();
-            Usuario user = (Usuario) request.getSession().getAttribute("user");
+                DAOFactoy.criarFactoy().criaUsuarioAdmDAO().addUsuario(usuario);
+                HttpSession session = request.getSession();
+                Usuario user = (Usuario) request.getSession().getAttribute("user");
 
-            session.setAttribute("user", user);
-            request.getRequestDispatcher("JSP/cadastrou.jsp").forward(request, response);
-            }else{
-             response.sendRedirect("gerenciarUser.jsp");
+                session.setAttribute("user", user);
+                request.getRequestDispatcher("JSP/cadastrou.jsp").forward(request, response);
+            } else {
+                response.sendRedirect("gerenciarUser.jsp");
             }
         } catch (Exception e) {
         }
