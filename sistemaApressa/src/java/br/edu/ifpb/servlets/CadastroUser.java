@@ -52,7 +52,7 @@ public class CadastroUser extends HttpServlet {
 
             
             if(ValidaUser.validaPassword(senha)){
-            Usuario usuario = new Usuario(matricula, nome, email, senha, fotoperfil, true, PapelUser.ADMINISTRADOR);
+            Usuario usuario = new Usuario(matricula, nome, email, senha, fotoperfil, true, PapelUser.valueOf(tipo));
 
             DAOFactoy.criarFactoy().criaUsuarioAdmDAO().addUsuario(usuario);
             HttpSession session = request.getSession();

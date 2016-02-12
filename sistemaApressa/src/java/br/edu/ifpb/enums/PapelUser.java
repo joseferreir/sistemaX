@@ -10,7 +10,7 @@ package br.edu.ifpb.enums;
  * @author José
  */
 public enum PapelUser {
-     ADMINISTRADOR("ADNISTRAD0R") ,ASSISTENTE_SALA("ASSISTENTE_SALA"), PROFESSOR("Professor"), MONITOR("Monitor"), ALUNO("Aluno");
+     ADMISTRAD0R("ADMISTRAD0R") ,ASSISTENTE_SALA("ASSISTENTE_SALA"), PROFESSOR("PROFESSOR"), MONITOR("MONITOR"), ALUNO("ALUNO");
     
     public String id;
     
