@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.edu.ifpb.servlets;
+package br.edu.ifpb.controle;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -17,7 +17,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author José
  */
-@WebServlet(name = "logout",urlPatterns = {"/logout"})
+@WebServlet(name = "logout", urlPatterns = {"/logout"})
 public class logout extends HttpServlet {
 
     @Override

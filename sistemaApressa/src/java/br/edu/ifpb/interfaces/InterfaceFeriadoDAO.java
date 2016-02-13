@@ -6,7 +6,7 @@
 package br.edu.ifpb.interfaces;
 
 
-import br.edu.ifpb.medelo.Feriado;
+import br.edu.ifpb.valueObjects.Feriado;
 import java.io.File;
 import java.io.InputStream;
 import java.util.List;

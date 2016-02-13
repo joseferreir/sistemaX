@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.edu.ifpb.medelo;
+package br.edu.ifpb.valueObjects;
 
 import java.time.LocalDate;
 

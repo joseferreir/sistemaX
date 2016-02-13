@@ -3,10 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.edu.ifpb.servlets;
+package br.edu.ifpb.controle;
 
-import br.edu.ifpb.controle.ControleFeriado;
-import br.edu.ifpb.medelo.Feriado;
+import br.edu.ifpb.execao.FeriadoException;
+import br.edu.ifpb.medelo.AdicionaFeriadoBo;
+import br.edu.ifpb.valueObjects.Feriado;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -21,8 +22,8 @@ import javax.swing.JOptionPane;
  *
  * @author José
  */
-@WebServlet(name = "CadastraFeriado",urlPatterns = {"/CadastraFeriado"})
-public class CadastraFeriado extends HttpServlet {
+@WebServlet(name = "CadastraFeriado", urlPatterns = {"/CadastraFeriado"})
+public class AdcionaFeriado extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -30,26 +31,20 @@ public class CadastraFeriado extends HttpServlet {
         doPost(request, response);
     }
 
-  
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
-        
+
             String nome = request.getParameter("nome");
-            JOptionPane.showMessageDialog(null, "feriado "+nome);
-            
             String data = request.getParameter("data");
-            JOptionPane.showMessageDialog(null, "feriado data"+data);
+            AdicionaFeriadoBo BO = new AdicionaFeriadoBo();
 
-            ControleFeriado controle = new ControleFeriado();
-            JOptionPane.showMessageDialog(null, "cotrole ");
-            Feriado feriado = new Feriado( LocalDate.parse(data, DateTimeFormatter.ISO_DATE), nome);
-            JOptionPane.showMessageDialog(null, "crio"+feriado.toString());
-            controle.adiciona(feriado);
-            JOptionPane.showMessageDialog(null, "feriado dao"+feriado.toString());
+            Feriado feriado = new Feriado(LocalDate.parse(data, DateTimeFormatter.ISO_DATE), nome);
+            JOptionPane.showMessageDialog(null, "crio" + feriado.toString());
+            BO.addFeriado(feriado, false);
 
-        } catch (Exception e) {
+        } catch (FeriadoException e) {
 
         }
     }

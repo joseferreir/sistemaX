@@ -17,6 +17,7 @@ public class ValidaUser {
     private final static String EXPRESSAO_REGULAR_SENHA_FORTE = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,16}$";
     private final static String EXPRESSAO_REGULAR_EMAIL = "^[\\w\\.-]+@([\\w\\-]+\\.)+[A-Z]{2,3}$";
     private final static String EXPRESSAO_REGULAR_MATRICULA = "[0-9]{6}";
+    private final static String EXPRESSAO_REGULAR_NOME = "[A-Za-z0-9.]+";
 
     public static boolean validaPassword(final String password) {
 
@@ -24,6 +25,13 @@ public class ValidaUser {
         Matcher m = p.matcher(password);
         return m.matches();
     }
+     public static boolean validaNome(final String nome) {
+
+        Pattern p = Pattern.compile(EXPRESSAO_REGULAR_NOME);
+        Matcher m = p.matcher(nome);
+        return m.matches();
+    }
+
 
     public static boolean validarEmail(String email) {
         boolean isEmailIdValid = false;
@@ -50,5 +58,4 @@ public class ValidaUser {
         }
     }
 
-   
 }

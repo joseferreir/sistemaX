@@ -10,7 +10,7 @@ import br.edu.ifpb.enums.PapelUser;
 import br.edu.ifpb.factoy.DAOFactoy;
 import br.edu.ifpb.interfaces.InterfaceAdimDAO;
 import br.edu.ifpb.interfaces.InterfaceUsuarioDAO;
-import br.edu.ifpb.medelo.Usuario;
+import br.edu.ifpb.valueObjects.Usuario;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -45,9 +45,9 @@ public class UsuarioAdmDAO implements InterfaceAdimDAO, InterfaceUsuarioDAO {
             stm.setString(4, usuario.getSenha());
             stm.setString(5, usuario.getFoto());
             stm.setString(6, String.valueOf(usuario.getPapel()));
-            stm.executeUpdate();
-
-            result = true;
+            if (stm.executeUpdate() > 0) {
+                result = true;
+            }
         } catch (SQLException e) {
             System.err.println(e.getMessage());
         } catch (ClassNotFoundException ex) {
@@ -104,7 +104,9 @@ public class UsuarioAdmDAO implements InterfaceAdimDAO, InterfaceUsuarioDAO {
             String sql = "DELETE FROM Usuario WHERE   matricula = ?";
             PreparedStatement stm = conn.prepareStatement(sql);
             stm.setString(1, matricula);
-           if( stm.executeUpdate()==1) result = true;
+            if (stm.executeUpdate() == 1) {
+                result = true;
+            }
 
         } catch (SQLException ex) {
             Logger.getLogger(UsuarioAdmDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -132,16 +134,8 @@ public class UsuarioAdmDAO implements InterfaceAdimDAO, InterfaceUsuarioDAO {
             ResultSet result = stm.executeQuery();
 
             while (result.next()) {
-                Usuario u = new Usuario();
 
-                u.setMatricula(result.getString("matricula"));
-                u.setNome(result.getString("NomeUsuario"));
-                u.setEmail(result.getString("email"));
-                u.setSenha(result.getString("senha"));
-                u.setFoto(result.getString("foto"));
-                u.setPapel(PapelUser.valueOf(result.getString("papel")));
-
-                usuarios.add(u);
+                usuarios.add(montarUsuario(result));
             }
 
         } catch (SQLException e) {
@@ -164,20 +158,12 @@ public class UsuarioAdmDAO implements InterfaceAdimDAO, InterfaceUsuarioDAO {
             String sql = "SELECT * FROM Usuario WHERE nomeUsuario LIKE ?";
             conn = ConexaoBD.abrirConexao();
             stm = conn.prepareStatement(sql);
-           stm.setString(1, palavra);
+            stm.setString(1, palavra);
             ResultSet result = stm.executeQuery();
 
             while (result.next()) {
-                Usuario u = new Usuario();
 
-                u.setMatricula(result.getString("matricula"));
-                u.setNome(result.getString("NomeUsuario"));
-                u.setEmail(result.getString("email"));
-                u.setSenha(result.getString("senha"));
-                u.setFoto(result.getString("foto"));
-                u.setPapel(PapelUser.valueOf(result.getString("papel")));
-
-                usuarios.add(u);
+                usuarios.add(montarUsuario(result));
             }
 
         } catch (SQLException e) {
@@ -211,6 +197,75 @@ public class UsuarioAdmDAO implements InterfaceAdimDAO, InterfaceUsuarioDAO {
     @Override
     public boolean alterarSenha(Usuario u) {
         return DAOFactoy.criarFactoy().criaUsuarioDAO().alterarSenha(u);
+    }
+
+    public Usuario buscaPorEmail(String email) {
+
+        Connection conn = null;
+        PreparedStatement stm;
+        Usuario u = new Usuario();
+
+        try {
+            String sql = "SELECT * FROM Usuario WHERE email = ?";
+            conn = ConexaoBD.abrirConexao();
+            stm = conn.prepareStatement(sql);
+            stm.setString(1, email);
+            ResultSet result = stm.executeQuery();
+
+            while (result.next()) {
+                u = montarUsuario(result);
+            }
+
+        } catch (SQLException e) {
+            System.err.println("Erro " + e.getMessage());
+            e.getStackTrace();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(UsuarioAdmDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            ConexaoBD.fecharConexao(conn);
+        }
+        return u;
+
+    }
+
+    private Usuario montarUsuario(ResultSet rs) throws SQLException {
+        Usuario u = new Usuario();
+
+        u.setMatricula(rs.getString("matricula"));
+        u.setNome(rs.getString("NomeUsuario"));
+        u.setEmail(rs.getString("email"));
+        u.setSenha(rs.getString("senha"));
+        u.setFoto(rs.getString("foto"));
+        u.setPapel(PapelUser.valueOf(rs.getString("papel")));
+
+        return u;
+    }
+
+    public Usuario buscaPorNome(String nome) {
+        Connection conn = null;
+        PreparedStatement stm;
+        Usuario u = new Usuario();
+
+        try {
+            String sql = "SELECT * FROM Usuario WHERE nomeusuario = ?";
+            conn = ConexaoBD.abrirConexao();
+            stm = conn.prepareStatement(sql);
+            stm.setString(1, nome);
+            ResultSet result = stm.executeQuery();
+
+            while (result.next()) {
+                u = montarUsuario(result);
+            }
+
+        } catch (SQLException e) {
+            System.err.println("Erro " + e.getMessage());
+            e.getStackTrace();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(UsuarioAdmDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            ConexaoBD.fecharConexao(conn);
+        }
+        return u;
     }
 
 }

@@ -8,7 +8,7 @@ package br.edu.ifpb.DAO;
 import br.edu.ifpb.conexao.ConexaoBD;
 import br.edu.ifpb.enums.PapelUser;
 import br.edu.ifpb.interfaces.InterfaceUsuarioDAO;
-import br.edu.ifpb.medelo.Usuario;
+import br.edu.ifpb.valueObjects.Usuario;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

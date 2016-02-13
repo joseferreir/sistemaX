@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.edu.ifpb.controle;
+package br.edu.ifpb.medelo;
 
 import br.edu.ifpb.execao.FeriadoException;
 import static br.edu.ifpb.medelo.ConversoDeStringEmLocalDate.converteStringEmLocalDate;
-import br.edu.ifpb.medelo.Feriado;
+import br.edu.ifpb.valueObjects.Feriado;
 import br.edu.ifpb.medelo.ValidaFeriado;
 import java.io.InputStream;
 import java.text.SimpleDateFormat;

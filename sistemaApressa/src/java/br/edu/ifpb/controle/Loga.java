@@ -3,18 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.edu.ifpb.servlets;
+package br.edu.ifpb.controle;
 
-import br.edu.ifpb.controle.ControleUsuario;
-import br.edu.ifpb.medelo.Usuario;
+import br.edu.ifpb.medelo.LoginBo;
+import br.edu.ifpb.valueObjects.Usuario;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -22,9 +20,6 @@ import javax.swing.JOptionPane;
  */
 public class Loga extends HttpServlet {
 
-   
-
-    
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -42,26 +37,24 @@ public class Loga extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-          response.setContentType("text/html;charset=UTF-8");
-          
+        response.setContentType("text/html;charset=UTF-8");
+
         String login = request.getParameter("login");
         String senha = request.getParameter("senha");
-        
+
         Usuario usuario;
-        ControleUsuario a = new ControleUsuario();
-        usuario = a.login(login, senha);
-       
+        LoginBo BO = new LoginBo();
+        usuario = BO.login(login, senha);
+
         if (usuario != null) {
             HttpSession session = request.getSession();
             session.setAttribute("user", usuario);
             response.sendRedirect("home.jsp");
-           
+
         } else {
-            response.sendRedirect("index.jsp");
-            
+            response.sendRedirect("loginFalha.jsp");
+
         }
     }
-
-  
 
 }

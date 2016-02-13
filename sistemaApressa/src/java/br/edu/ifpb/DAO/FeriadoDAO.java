@@ -7,7 +7,7 @@ package br.edu.ifpb.DAO;
 
 import br.edu.ifpb.conexao.ConexaoBD;
 import br.edu.ifpb.interfaces.InterfaceFeriadoDAO;
-import br.edu.ifpb.medelo.Feriado;
+import br.edu.ifpb.valueObjects.Feriado;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.sql.Connection;

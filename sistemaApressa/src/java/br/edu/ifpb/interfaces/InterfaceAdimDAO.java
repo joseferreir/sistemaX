@@ -5,8 +5,7 @@
  */
 package br.edu.ifpb.interfaces;
 
-
-import br.edu.ifpb.medelo.Usuario;
+import br.edu.ifpb.valueObjects.Usuario;
 import java.util.List;
 
 /**
@@ -14,17 +13,22 @@ import java.util.List;
  * @author José
  */
 public interface InterfaceAdimDAO {
-     public boolean addUsuario(Usuario usuario);
+
+    public boolean addUsuario(Usuario usuario);
 
     public boolean remover(String matricula);
 
     public List<Usuario> buscaTotosUsuarios();
 
     public List<Usuario> buscaPorPalavraChave(String palavra);
-    
-     public boolean atualizarParaAdministrador(String email);
+
+    public boolean atualizarParaAdministrador(String email);
 
     public boolean editarUsuario(Usuario usuario);
-        
+
+    public Usuario buscaPorEmail(String email);
     
+     public Usuario buscaPorNome(String nome);
+    
+
 }

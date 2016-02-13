@@ -3,12 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.edu.ifpb.servlets;
+package br.edu.ifpb.controle;
 
 import br.edu.ifpb.enums.PapelUser;
-import br.edu.ifpb.factoy.DAOFactoy;
-import br.edu.ifpb.medelo.Usuario;
-import br.edu.ifpb.medelo.ValidaUser;
+import br.edu.ifpb.medelo.AdicinaUsuario;
+import br.edu.ifpb.valueObjects.Usuario;
 import java.io.IOException;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -17,14 +16,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.swing.JOptionPane;
 
 /**
  *
  * @author José
  */
 @WebServlet(name = " CadastroUser", urlPatterns = {"/CadastroUser"})
-public class CadastroUser extends HttpServlet {
+public class AdicionaUser extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -46,14 +44,13 @@ public class CadastroUser extends HttpServlet {
             
             String senha = request.getParameter("senha");
 
-            String foto = request.getParameter("foto");
-            ServletContext context = getServletContext();
-            String fotoperfil = context.getRealPath(foto);
-
-            if (ValidaUser.validaPassword(senha)) {
-                Usuario usuario = new Usuario(matricula, nome, email, senha, fotoperfil, true, PapelUser.valueOf(papel));
-
-                DAOFactoy.criarFactoy().criaUsuarioAdmDAO().addUsuario(usuario);
+            String foto = "img/profiles/reader-default.png" ;//request.getParameter("foto");
+//            ServletContext context = getServletContext();
+//            String fotoperfil = context.getRealPath(foto);
+              Usuario usuario = new Usuario(matricula, nome, email, senha, foto, true, PapelUser.valueOf(papel));
+              AdicinaUsuario BO = new AdicinaUsuario();
+            if (BO.addUsuario(usuario)) {
+                
                 HttpSession session = request.getSession();
                 Usuario user = (Usuario) request.getSession().getAttribute("user");
 
@@ -66,5 +63,6 @@ public class CadastroUser extends HttpServlet {
         }
 
     }
+     
 
 }
