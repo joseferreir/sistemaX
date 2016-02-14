@@ -1,10 +1,6 @@
-<%-- 
-    Document   : cadastrou
-    Created on : 30/01/2016, 12:32:09
-    Author     : José
---%>
 
-<%@page import="br.edu.ifpb.medelo.Usuario"%>
+
+<%@page import="br.edu.ifpb.valueObjects.Usuario"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%

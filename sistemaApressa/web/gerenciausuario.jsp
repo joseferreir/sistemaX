@@ -1,4 +1,4 @@
-<%@page import="br.edu.ifpb.medelo.Usuario"%>
+<%@page import="br.edu.ifpb.valueObjects.Usuario"%>
 <html lang="PT-BR">  <!--  -->
     <head>
         <meta charset="UTF-8">
@@ -9,9 +9,9 @@
         <meta name="" content="">
         <title>Gerenciamento de Usuários</title>
 
- <%
-        Usuario usuario = (Usuario) session.getAttribute("user");
-    %>
+        <%
+            Usuario usuario = (Usuario) session.getAttribute("user");
+        %>
         <link rel="stylesheet" href="css/style.css" type="text/css">
         <style type="text/css">
             @import "css/jquery.dataTables.css";
@@ -25,10 +25,11 @@
                 $('#tb').dataTable();
             });
 
-            function redireciona('.remove'){
-                location.href = 'ServletExcluirUsuario';
-                alert('inok');
-            }
+//            function redireciona('.remove'){
+//                location.href = 'ServletExcluirUsuario';
+//                alert('inok');
+//            };
+
         </script>
 
 
@@ -42,7 +43,7 @@
         <div class="content-top">
             <div class="content-left">
                 <h2> Nome do Sistema</h2>
-                <img src="img/footer2.png" title="">
+                <img src="img/user.jpg" title="">
                 <h3> Logado como <code>Codigo</code></h3>
 
             </div>
@@ -106,11 +107,11 @@
                 <label class="tipo" >Tipo</label>
                 <select  type="select" name="papel"  id="papel" > 
                     <option value="">Selecione</option>
-                    <option value="ADMISTRAD0R">ADMISTRAD0R</option>
-                    <option value="ALUNO">ALUNO</option>
-                    <option value="ASSISTENTE_SALA">ASSISTENTE_SALA</option>
-                     <option value="PROFESSOR">PROFESSOR</option>
-                      <option value="MONITOR">MONITOR</option>
+                    <option value="ADMISTRAD0R">admin</option>
+                    <option value="ALUNO">aluno</option>
+                    <option value="ASSISTENTE_SALA">assistente de sala</option>
+                    <option value="PROFESSOR">professor</option>
+                    <option value="MONITOR">monitor</option>
                 </select>
 
 
@@ -121,30 +122,33 @@
         </section>
 
         <section id="user-update">
-            <form action="Servlet" method="post" id=""class="form-update">
-                <img src="user.jpg" title="" class="photo">
-                <h4>Carregar Foto</h4>
-                <input type="file" name="file"  class="btn-file" id="btn-file" onchange="document.getElementById('file-falso').value = this.value;">
-                <label class="name-u">Nome de Usuário</label>
-                <input for=" " type="text" name="name" placeholder="Ex:Antonio Marques" class="" id="name-u">  
+            <div class="modal-body">
+                
+                <form action="Servlet" method="post" id=""class="form-update">
+                    <img src="user.jpg" title="" class="photo">
+                       <h4>Carregar Foto</h4>
+                    <input name="imagem" id="imagem" class="file" type="file" multiple data-min-file-count="1">
+                  
+                    <label class="name-u">Nome de Usuário</label>
+                    <input for=" " type="text" name="name" placeholder="Ex:Antonio Marques" class="" id="name-u">  
 
-                <label class="senha-u" >Senha</label>
-                <input for=" " type="password" name="" placeholder="Ex: Anderc4ma5" class="" id="senha-u"> 
+                    <label class="senha-u" >Senha</label>
+                    <input for=" " type="password" name="" placeholder="Ex: Anderc4ma5" class="" id="senha-u"> 
 
-                <label class="email-u" >Email</label>
-                <input for=" " type="email" placeholder="Ex: zilderlan@meuemail.com" name="" class="" id="email-u"> 
+                    <label class="email-u" >Email</label>
+                    <input for=" " type="email" placeholder="Ex: zilderlan@meuemail.com" name="" class="" id="email-u"> 
 
-                <label class="tipo-u" >Tipo</label>
-                <select for=" " type="select" name="select" class="" id="tipo-u" > 
-                    <option value="">Selecione</option>
-                    <option value="Administrador">Administrador</option>
-                    <option value="Aluno">Aluno</option>
-                </select>
+                    <label class="tipo-u" >Tipo</label>
+                    <select for=" " type="select" name="select" class="" id="tipo-u" > 
+                        <option value="">Selecione</option>
+                        <option value="Administrador">Administrador</option>
+                        <option value="Aluno">Aluno</option>
+                    </select>
 
 
-                <input for=" " type="button" name="" value="Cancelar" class="cancel-u" id="" onclick="document.getElementById('user-update').style.display = 'none';"> 
-                <input for=" " type="submit" name="" value="Cadastrar" class="submit-u" id="">       		
-            </form >
+                    <input for=" " type="button" name="" value="Cancelar" class="cancel-u" id="" onclick="document.getElementById('user-update').style.display = 'none';"> 
+                    <input for=" " type="submit" name="" value="Cadastrar" class="submit-u" id="">       		
+                </form >
         </section>
 
         <section clas="user-table">
@@ -153,9 +157,10 @@
                 <table id="tb">
                     <thead>
                         <tr class="tr">
+                            <th>Matricula</th>
                             <th>Nome</th>
-                            <th>E-Mail</th>
-                            <th>Papel</th>
+                            <th>E-mail</th>
+                            <th>papel</th>
                             <th>Status</th>
                         </tr>
                     </thead>
@@ -163,9 +168,10 @@
                         <% int i = 0;%>
                         <%for (i = 0; i < 10; i++) {%>
                         <tr>
-                            <td class="td">Nome <%= i%></td>
                             <td id="">Matricula <%= i%></td>
-                            <td id="">Email <%= i%></td>
+                            <td class="td">Nome <%= i%></td>
+                            <td id="">E-mail <%= i%></td>
+                            <td id="">papel <%= i%></td>
                             <td id="">Status <%= i%></td>
                         </tr>
 

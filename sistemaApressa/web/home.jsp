@@ -3,7 +3,8 @@
     Created on : 27/01/2016, 16:59:14
     Author     : Zilderlan
 --%>
-<%@page import="br.edu.ifpb.medelo.Usuario"%>
+<%@page import="br.edu.ifpb.valueObjects.Usuario"%>
+<%@page import="br.edu.ifpb.valueObjects.Usuario"%>
 <%
         Usuario usuario = (Usuario) session.getAttribute("user");
         String a = usuario.getFoto();
@@ -12,11 +13,7 @@
 <html lang="PT-BR">  <!--  -->
     <head>
 		<meta charset="UTF-8">
-		<meta http-equiv="Content-Type" content="text/html">
-		<meta http-equiv="refresh" content="200">
-		<meta name="author" content="Zilderlan Leite, Ferreira, Aluisio Pereira">
-		<meta name="" content="">
-		<meta name="" content="">
+		
 		<title>Home</title>
 		
 		<link rel="stylesheet" href="css/loginStyle.css" type="text/css" >
