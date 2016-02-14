@@ -1,3 +1,6 @@
+<%@page import="java.util.List"%>
+<%@page import="java.util.Collections"%>
+<%@page import="br.edu.ifpb.DAO.UsuarioAdmDAO"%>
 <%@page import="br.edu.ifpb.valueObjects.Usuario"%>
 <html lang="PT-BR">  <!--  -->
     <head>
@@ -43,17 +46,17 @@
         <div class="content-top">
             <div class="content-left">
                 <h2> Nome do Sistema</h2>
-                <img src="img/user.jpg" title="">
+                <img src="img/user.jpg" title="foto perfil">
                 <h3> Logado como <code>Codigo</code></h3>
 
             </div>
 
             <div class="content-right">
                 <h3> Nome Usuário</h3>
-                <img src=${usario.foto}>
+                <img src="img/user.jpg">
                 <ul >
-                    <li><a href="" class="perfil">Editar Perfil</a></li>
-                    <li><a href="" class="exit">Sair</a></li>
+                    <li><a href="#edita" class="perfil">Editar Perfil</a></li>
+                    <li><a href="/logout" class="exit">Sair</a></li>
                 </ul>
 
             </div>
@@ -123,12 +126,12 @@
 
         <section id="user-update">
             <div class="modal-body">
-                
-                <form action="Servlet" method="post" id=""class="form-update">
+
+                <form action=" EditaUsuario" method="post" id="edita" class="form-update">
                     <img src="user.jpg" title="" class="photo">
-                       <h4>Carregar Foto</h4>
+                    <h4>Carregar Foto</h4>
                     <input name="imagem" id="imagem" class="file" type="file" multiple data-min-file-count="1">
-                  
+
                     <label class="name-u">Nome de Usuário</label>
                     <input for=" " type="text" name="name" placeholder="Ex:Antonio Marques" class="" id="name-u">  
 
@@ -165,25 +168,91 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <% int i = 0;%>
-                        <%for (i = 0; i < 10; i++) {%>
-                        <tr>
-                            <td id="">Matricula <%= i%></td>
-                            <td class="td">Nome <%= i%></td>
-                            <td id="">E-mail <%= i%></td>
-                            <td id="">papel <%= i%></td>
-                            <td id="">Status <%= i%></td>
-                        </tr>
+                        <%
+                            UsuarioAdmDAO queryUsuario = new UsuarioAdmDAO();
+                            List<Usuario> usuarios = queryUsuario.buscaTotosUsuarios();
 
-                        <% }%>
-                        <!--        		 
-                               
-                                                </tbody>
-                        
-                                        </table>
-                                    </div>
-                        
-                                </section>
-                                </article>
-                            </body>
-                        </html>
+                            Collections.sort(usuarios);
+
+                            for (Usuario u : usuarios) {
+                                out.print("<tr onclick=\"displayData(" + ")\" >");
+                                out.print("<th>" + u.getMatricula() + "</th>");
+                                out.print("<th>" + u.getNome() + "</th>");
+                                out.print("<th>" + u.getEmail() + "</th>");
+                                out.print("<th>" + u.getPapel().name() + "</th>");
+                                out.print("<th>" + u.getStatus() + "</th>");
+                                out.print("</tr>");
+                            }
+                        %>
+                    </tbody>
+                </table>
+                <script type="text/javascript">
+
+                    function show_success() {
+                        $('#sucessModal').modal({
+                            show: 'true'
+                        });
+                    }
+
+                    function show_error(textError) {
+                        $('p#error-body').html(textError);
+                        $('#errorModal').modal({
+                            show: 'true'
+                        });
+                    }
+
+                    $(document).ready(function EOQ() {
+                    <%
+              Integer aux = (Integer) session.getAttribute("operacao");
+              session.setAttribute("operacao", null);
+              String erro = (String) session.getAttribute("erro");
+              session.setAttribute("erro", null);
+                    %>
+                        var c = <%=aux%>;
+                        var d = "<%=erro%>";
+                        if (c == 1) {
+                            show_success();
+                        } else if (d !== "null") {
+                            show_error(d);
+                        }
+                    });
+
+                    function displayData(idee) {
+                        $.ajax({
+                            url: "editar_usuario",
+                            type: "POST",
+                            data: {ide: idee},
+                            success: function (data) {
+                                var valores = data.split("#break#");
+                                $("#nome_edit").val(valores[0]);
+                                $("#nome_delet").val(valores[0]);
+                                $("#email_edit").val(valores[1]);
+                                $("#mtr_edit").val(valores[2]);
+                                $("#papel_edit").val(valores[3]);
+
+                                $("#delete_modal").attr("action", "excluir_usuario");
+                                $(":input#dados").val(idee);
+
+                                if (valores[3].localeCompare("ADMINISTRADOR")) {
+                                    $("#papel_edit").prop("disabled", false);
+                                } else {
+                                    $("#papel_edit").prop("disabled", true);
+                                }
+                            }
+                        });
+                    }
+                    ;
+                </script>
+
+
+                <!--        		 
+                       
+                                        </tbody>
+                
+                                </table>
+                            </div>
+                
+                        </section>
+                        </article>
+                    </body>
+                </html>

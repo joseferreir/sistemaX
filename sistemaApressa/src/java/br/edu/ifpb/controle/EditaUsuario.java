@@ -19,7 +19,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author victor
  */
-@WebServlet(name = "atualizar_usuario", urlPatterns = {"/atualizar_usuario"})
+@WebServlet(name = " EditaUsuario", urlPatterns = {"/ EditaUsuario"})
 public class EditaUsuario extends HttpServlet {
 
     private EdiraUsuarioBo atualizarUsuarioBo;

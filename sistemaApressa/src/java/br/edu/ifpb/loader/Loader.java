@@ -2,6 +2,7 @@ package br.edu.ifpb.loader;
 
 
 
+import br.edu.ifpb.DAO.FeriadoDAO;
 import br.edu.ifpb.DAO.UsuarioAdmDAO;
 import br.edu.ifpb.enums.PapelUser;
 import br.edu.ifpb.medelo.EdiraUsuarioBo;
@@ -14,6 +15,7 @@ import br.edu.ifpb.medelo.ValidaUser;
 import java.io.File;
 import java.io.InputStream;
 import java.time.LocalDate;
+import java.util.Iterator;
 import java.util.List;
 
 /*
@@ -36,7 +38,7 @@ public class Loader {
         f.setData(LocalDate.of(2016, 04,01));
         
       /// boolean x= fg.editaFeriado(f);
-     boolean x=  a.editaUsuario(new Usuario("000003", "maria.Dias", "may@gmail.com", "AS123as@", "/../", true, PapelUser.ALUNO));
+     boolean x=  a.editaUsuario(new Usuario("000002", "maria.Dias", "diogo@gmail.com", "AS123as@", "/../", true, PapelUser.ALUNO));
         System.out.println(" "+x);
        // c.adiciona(new Feriado(LocalDate.of(2016, 01, 23), "agora"));
         UsuarioAdmDAO ad = new UsuarioAdmDAO() ;
@@ -50,6 +52,16 @@ public class Loader {
         //  System.out.println(" usuario logado " +u);
         // boolean x=   ValidaUser.validarEmail("jose_m@ai.com");
         //  System.out.println("email  "+x);
+     
+              FeriadoDAO d= new FeriadoDAO();
+               List<Feriado> fs = d.buscarTodos();
+        for (Iterator<Feriado> it = fs.iterator(); it.hasNext();) {
+            Feriado xo= it.next();
+            System.out.println(" ddd"+ xo);
+        }
+            
+            
+        
         
          
         

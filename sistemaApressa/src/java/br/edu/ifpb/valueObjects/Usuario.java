@@ -17,7 +17,7 @@ import br.edu.ifpb.enums.PapelUser;
 
  */
 
-public class Usuario {
+public class Usuario implements Comparable<Usuario>{
 
     private String matricula;
     private String nome;
@@ -157,5 +157,16 @@ public class Usuario {
     public String toString() {
         return "Usuario{" + "matricula " + matricula + ", nome " + nome + ", email" + email + ", senha " + senha + ", foto " + foto + ", status " + status + ", papel " + papel + '}';
     }
+
+    @Override
+    public int compareTo(Usuario o) {
+        
+        if(this.nome.compareTo(o.getNome())== 0)
+            return 0;
+        else if(this.nome.compareTo(o.getNome())>0)
+            return 1;
+        return -1;
+    }
+    
 
 }
