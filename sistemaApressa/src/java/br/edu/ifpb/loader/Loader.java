@@ -32,10 +32,10 @@ public class Loader {
     public static void main(String[] args) {
         EdiraUsuarioBo a = new EdiraUsuarioBo();
         
-        EditaFeriadoBo  fg = new EditaFeriadoBo();
-        Feriado f = new Feriado();
-        f.setNome("HOJE");
-        f.setData(LocalDate.of(2016, 04,01));
+//        EditaFeriadoBo  fg = new EditaFeriadoBo();
+//        Feriado f = new Feriado();
+//        f.setNome("HOJE");
+//        f.setData(LocalDate.of(2016, 04,01));
         
       /// boolean x= fg.editaFeriado(f);
      boolean x=  a.editaUsuario(new Usuario("000002", "maria.Dias", "diogo@gmail.com", "AS123as@", "/../", true, PapelUser.ALUNO));
@@ -44,7 +44,7 @@ public class Loader {
         UsuarioAdmDAO ad = new UsuarioAdmDAO() ;
       List<Usuario> s = ad.buscaTotosUsuarios();
       for(Usuario u :s)
-        System.out.println("US" +u.getNome());
+        System.out.println("US" +u.getFoto());
         //  c.importFeriado(InputStream("D://feriados.csv"), true);
         // boolean x=  a.editarUsuario(new Usuario("000001", "Ana Gloria", "maria@gmail", "AS123as@", "/../", true, PapelUser.ALUNO));
         //  System.out.println("cadastrou "+x);

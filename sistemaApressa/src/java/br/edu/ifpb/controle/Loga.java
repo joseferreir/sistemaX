@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import jdk.nashorn.internal.parser.TokenType;
 
 /**
  *
@@ -46,15 +47,20 @@ public class Loga extends HttpServlet {
         LoginBo BO = new LoginBo();
         usuario = BO.login(login, senha);
 
-        if (usuario != null) {
+        if (usuario != null && usuario.getPapel()== usuario.getPapel()) {
             HttpSession session = request.getSession();
             session.setAttribute("user", usuario);
-            response.sendRedirect("home.jsp");
-
-        } else {
-            response.sendRedirect("loginFalha.jsp");
+            response.sendRedirect("homeAdmin.jsp");
 
         }
+        else {
+              HttpSession session = request.getSession();
+            session.setAttribute("user", usuario);
+            response.sendRedirect("homeNoAdmin.jsp");
+            
+        }      
+        
+      //  response.sendRedirect("loginFalha.jsp");
     }
 
 }

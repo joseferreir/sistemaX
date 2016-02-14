@@ -34,13 +34,13 @@
         		<div class="content-left">
         			<h2> Nome do Sistema</h2>
                                 <img src="img/footer2.png" id="fotoperfil" >
-        			<h3> ${usuario.nome} <code>Codigo</code></h3>
+        			<h3> Logado <code><%  out.print( usuario.getPapel()); %></code></h3>
 
         		</div>
 
         		<div class="content-right">
-        			<h3> ${usuario.nome}</h3>
-        			<img src=${usuario.foto}>
+        			<h3> </h3>
+        			<img src="${usuario.foto}">
         			<ul >
         				<li><a href="" class="perfil">Editar Perfil</a></li>
         				<li><a href="" class="exit">Sair</a></li>

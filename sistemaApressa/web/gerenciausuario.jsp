@@ -45,15 +45,15 @@
 
         <div class="content-top">
             <div class="content-left">
-                <h2> Nome do Sistema</h2>
+                <h2> SistemaApressa</h2>
                 <img src="img/user.jpg" title="foto perfil">
-                <h3> Logado como <code>Codigo</code></h3>
+                <h3> Logado <code><%  out.print( usuario.getPapel()); %></code></h3>
 
             </div>
 
             <div class="content-right">
-                <h3> Nome Usuário</h3>
-                <img src="img/user.jpg">
+                <h3> <%  out.print( usuario.getNome()); %></h3>
+                <img src="${usuario.foto}">
                 <ul >
                     <li><a href="#edita" class="perfil">Editar Perfil</a></li>
                     <li><a href="/logout" class="exit">Sair</a></li>

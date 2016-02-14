@@ -161,11 +161,7 @@ public class Usuario implements Comparable<Usuario>{
     @Override
     public int compareTo(Usuario o) {
         
-        if(this.nome.compareTo(o.getNome())== 0)
-            return 0;
-        else if(this.nome.compareTo(o.getNome())>0)
-            return 1;
-        return -1;
+      return this.nome.toUpperCase().compareTo(o.getNome().toUpperCase());
     }
     
 
