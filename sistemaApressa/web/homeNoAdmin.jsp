@@ -44,7 +44,7 @@
                                 <%out.print(usuario.getNome());%>
         			<ul >
         				<li><a href="" class="perfil">Editar Perfil</a></li>
-        				<li><a href="" class="exit">Sair</a></li>
+        				<li><a href="logout" class="exit">Sair</a></li>
         			</ul>
 
         		</div>

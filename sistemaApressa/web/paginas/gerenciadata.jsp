@@ -61,7 +61,7 @@
                     <img src="../img/user.jpg" title="Foto do usuário">
                     <ul >
                         <li><a href="" class="perfil">Editar Perfil</a></li>
-                        <li><a href="" class="exit">Sair</a></li>
+                        <li><a href="logout" class="exit">Sair</a></li>
                     </ul>
 
                 </div>
@@ -103,7 +103,7 @@
                 <label class="label-holiday" >Nome do Feriado</label>
                 <input  type="text" placeholder="Ex: Dia das Mães" name="name" id="name-holiday"> 
                 <label id="label-holiday" >Data</label>
-                <input  type="text" placeholder="Ex: 09/09/1900" name="data" id="holiday"> 
+                <input  type="date" placeholder="Ex: 09/09/1900" name="data" id="holiday"> 
                 <input for=" " type="button" name="" value="Cancelar" class="cancel" id="" onclick="document.getElementById('holiday-add').style.display='none';"> 
                 <input for=" " type="submit" name="" value="Cadastrar" class="submit" id="">            
             </form >
@@ -120,17 +120,14 @@
         </section>
 
 
-        <section id="date-import">
-            <h4> Importar Feriado</h4>
-            <form action="importarferiados" method="post" id=""class=""> 
-                <label class="name-fe" >Nome do feriado</label>
-                <input for=" " type="text" name="" placeholder="Ex: Dia das Mães" class="" id="import-fe"> 
-                <input for=" type="file"  name="" class="" id="select-fe"> 
-                <h5>SObrescrever Feriado</h5>
-                <input type="checkbox" name="sobrescrever" id="check">
-
-                
-                <input for=" " type="button" name="" value="Cancelar" class="cancel" id="" onclick="document.getElementById('date-import').style.display='none';"> 
+       <section id="holiday-add">
+            <h4>Inserir Feriado</h4>
+            <form action="" method="post" id=""class="">
+                <label class="label-holiday" >Nome do Feriado</label>
+                <input  type="text" placeholder="Ex: Dia das Mães" name="name" id="name-holiday"> 
+                <label id="label-holiday" >Data</label>
+                <input  type="date" placeholder="Ex: 09/09/1900" name="holiday" id="holiday"> 
+                <input for="" type="button" name="" value="Cancelar" class="cancel" id="" onclick="document.getElementById('holiday-add').style.display='none';"> 
                 <input for=" " type="submit" name="" value="Cadastrar" class="submit" id="">            
             </form >
         </section>

@@ -23,7 +23,7 @@ public class logout extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        doPut(request, response);
+        doPost(request, response);
     }
 
     @Override
@@ -31,11 +31,12 @@ public class logout extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = request.getSession();
 
-        if (session.getAttribute("usuario") != null) {
+        if (session.getAttribute("user") != null) {
             session.invalidate();
+             response.sendRedirect("index.html");
+
         }
 
-        response.sendRedirect("index.jsp");
-
+       
     }
 }

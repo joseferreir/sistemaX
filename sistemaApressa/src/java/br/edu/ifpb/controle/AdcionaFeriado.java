@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package br.edu.ifpb.controle;
 
 import br.edu.ifpb.execao.FeriadoException;
@@ -22,7 +18,7 @@ import javax.swing.JOptionPane;
  *
  * @author José
  */
-@WebServlet(name = "CadastraFeriado", urlPatterns = {"/CadastraFeriado"})
+@WebServlet(name = "AdcionaFeriado", urlPatterns = {"/AdcionaFeriado"})
 public class AdcionaFeriado extends HttpServlet {
 
     @Override

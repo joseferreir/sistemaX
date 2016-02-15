@@ -5,6 +5,7 @@
  */
 package br.edu.ifpb.controle;
 
+import br.edu.ifpb.enums.PapelUser;
 import br.edu.ifpb.medelo.LoginBo;
 import br.edu.ifpb.valueObjects.Usuario;
 import java.io.IOException;
@@ -46,8 +47,9 @@ public class Loga extends HttpServlet {
         Usuario usuario;
         LoginBo BO = new LoginBo();
         usuario = BO.login(login, senha);
+        
 
-        if (usuario != null && usuario.getPapel()== usuario.getPapel()) {
+        if (usuario != null && usuario.getPapel()== usuario.getPapel().ADMISTRAD0R) {
             HttpSession session = request.getSession();
             session.setAttribute("user", usuario);
             response.sendRedirect("homeAdmin.jsp");
@@ -58,9 +60,9 @@ public class Loga extends HttpServlet {
             session.setAttribute("user", usuario);
             response.sendRedirect("homeNoAdmin.jsp");
             
-        }      
+        }       
         
-      //  response.sendRedirect("loginFalha.jsp");
+      //  response.sendError(500, login);
     }
 
 }
