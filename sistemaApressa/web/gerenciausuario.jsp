@@ -53,7 +53,7 @@
 
             <div class="content-right">
                 <h3> <%  out.print( usuario.getNome()); %></h3>
-                <img src="${usuario.foto}">
+                <img src="img/profiles/reader-default.png">
                 <ul >
                     <li><a href="#" class="perfil">Editar Perfil</a></li>
                     <li><a href="logout" class="exit">Sair</a></li>
@@ -92,7 +92,7 @@
 
 
             <form action="CadastroUser " method="post" id=""class="form-add">
-                <img src="user.jpg" title="" class="photo">
+                <img src="img/profiles/reader-default.png" title="" class="photo">
                 <h4>Carregar Foto</h4>
                 <input type="file" name="foto"  class="btn-file" id="btn-file" onchange="document.getElementById('file-falso').value = this.value;">
                 <label class="name">Nome de Usuário</label>
@@ -127,7 +127,7 @@
         <section id="user-update">
             <div class="modal-body">
 <form action="EditaUsuario" method="post" id=""class="form-update">
-        		 <img src="user.jpg" title="" class="photo">
+    <img src="img/profiles/reader-default.png" title="" class="photo">
                 <h4>Carregar Foto</h4>
                 <input type="file" name="foto"  class="btn-file" id="btn-file" onchange="document.getElementById('file-falso').value = this.value;">
                 <label class="name">Nome de Usuário</label>
@@ -191,65 +191,7 @@
                         %>
                     </tbody>
                 </table>
-                <script type="text/javascript">
-
-                    function show_success() {
-                        $('#sucessModal').modal({
-                            show: 'true'
-                        });
-                    }
-
-                    function show_error(textError) {
-                        $('p#error-body').html(textError);
-                        $('#errorModal').modal({
-                            show: 'true'
-                        });
-                    }
-
-                    $(document).ready(function EOQ() {
-                    <%
-              Integer aux = (Integer) session.getAttribute("operacao");
-              session.setAttribute("operacao", null);
-              String erro = (String) session.getAttribute("erro");
-              session.setAttribute("erro", null);
-                    %>
-                        var c = <%=aux%>;
-                        var d = "<%=erro%>";
-                        if (c == 1) {
-                            show_success();
-                        } else if (d !== "null") {
-                            show_error(d);
-                        }
-                    });
-
-                    function displayData(idee) {
-                        $.ajax({
-                            url: "editar_usuario",
-                            type: "POST",
-                            data: {ide: idee},
-                            success: function (data) {
-                                var valores = data.split("#break#");
-                                $("#nome_edit").val(valores[0]);
-                                $("#nome_delet").val(valores[0]);
-                                $("#email_edit").val(valores[1]);
-                                $("#mtr_edit").val(valores[2]);
-                                $("#papel_edit").val(valores[3]);
-
-                                $("#delete_modal").attr("action", "excluir_usuario");
-                                $(":input#dados").val(idee);
-
-                                if (valores[3].localeCompare("ADMINISTRADOR")) {
-                                    $("#papel_edit").prop("disabled", false);
-                                } else {
-                                    $("#papel_edit").prop("disabled", true);
-                                }
-                            }
-                        });
-                    }
-                    ;
-                </script>
-
-
+              
                 <!--        		 
                        
                                         </tbody>

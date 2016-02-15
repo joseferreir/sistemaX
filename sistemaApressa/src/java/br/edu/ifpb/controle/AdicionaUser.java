@@ -41,16 +41,16 @@ public class AdicionaUser extends HttpServlet {
             String matricula = request.getParameter("matricula");
 
             String papel = request.getParameter("papel");
-            
-            String senha = request.getParameter("senha");
 
-            String foto = "img/profiles/reader-default.png" ;//request.getParameter("foto");
-//            ServletContext context = getServletContext();
-//            String fotoperfil = context.getRealPath(foto);
-              Usuario usuario = new Usuario(matricula, nome, email, senha, foto, true, PapelUser.valueOf(papel));
-              AdicinaUsuario BO = new AdicinaUsuario();
+            String senha = request.getParameter("senha");
+            Usuario usuario = new Usuario(matricula, nome, email, senha, "img\\profiles/reader-default.png", true, PapelUser.valueOf(papel));
+            String foto = new ProcessadorFotos("img/profiles").processarArquivo(request, "imagemPerfil" + usuario.getNome());
+            if (foto != null) {
+                usuario.setFoto(foto);
+            }
+            AdicinaUsuario BO = new AdicinaUsuario();
             if (BO.addUsuario(usuario)) {
-                
+
                 HttpSession session = request.getSession();
                 Usuario user = (Usuario) request.getSession().getAttribute("user");
 
@@ -63,6 +63,5 @@ public class AdicionaUser extends HttpServlet {
         }
 
     }
-     
 
 }

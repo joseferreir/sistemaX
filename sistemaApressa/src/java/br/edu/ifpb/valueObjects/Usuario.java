@@ -7,17 +7,18 @@ package br.edu.ifpb.valueObjects;
 
 import br.edu.ifpb.enums.PapelUser;
 
-/**Classe para objetos do tipo Usuario, onde serão contidos, valores e métodos para o mesmo.
-
+/**
+ * Classe para objetos do tipo Usuario, onde serão contidos, valores e métodos
+ * para o mesmo.
+ *
  * @Aluísio , josé e zilderlan
-
+ *
  * @version 1.05
-
+ *
  * @since Release 02 da aplicação
-
+ *
  */
-
-public class Usuario implements Comparable<Usuario>{
+public class Usuario implements Comparable<Usuario> {
 
     private String matricula;
     private String nome;
@@ -26,13 +27,17 @@ public class Usuario implements Comparable<Usuario>{
     private String foto;
     private boolean status;
     private PapelUser papel;
-/** Construtor default para class  Usuário
- */
+
+    /**
+     * Construtor default para class Usuário
+     */
     public Usuario() {
         this.status = true;
     }
-/** Construtor parametrizado  para class  Usuário
- */
+
+    /**
+     * Construtor parametrizado para class Usuário
+     */
     public Usuario(String matricula, String nome, String email, String senha, String foto, boolean status, PapelUser papel) {
         this.matricula = matricula;
         this.nome = nome;
@@ -43,23 +48,31 @@ public class Usuario implements Comparable<Usuario>{
         this.papel = papel;
     }
 
-  /** Método que retorna a matricula do usuário
-   * @return String corespondente a matricula
-   */
+    /**
+     * Método que retorna a matricula do usuário
+     *
+     * @return String corespondente a matricula
+     */
     public String getMatricula() {
         return matricula;
     }
-/** Método para atualizar amatricula do usuário 
- * @param matricula
- */
-    
+
+    /**
+     * Método para atualizar amatricula do usuário
+     *
+     * @param matricula
+     */
+
     public void setMatricula(String matricula) {
         this.matricula = matricula;
     }
- /** Método que retorna a nome do usuário
-   * @return String corespondente a o nome do usuario
-   */
- 
+
+    /**
+     * Método que retorna a nome do usuário
+     *
+     * @return String corespondente a o nome do usuario
+     */
+
     public String getNome() {
         return nome;
     }
@@ -67,58 +80,87 @@ public class Usuario implements Comparable<Usuario>{
     public void setNome(String nome) {
         this.nome = nome;
     }
- /** Método que retorna o email do usuário
-   * @return String corespondente a email
-   */
+
+    /**
+     * Método que retorna o email do usuário
+     *
+     * @return String corespondente a email
+     */
     public String getEmail() {
         return email;
     }
-    /** Método que atualiza o email do usuário
-     @param String volor do email*/
 
+    /**
+     * Método que atualiza o email do usuário
+     *
+     * @param email volor do email
+     */
     public void setEmail(String email) {
         this.email = email;
     }
-    /**Método para retorna a senha do usuário */
+
+    /**
+     * Método para retorna a senha do usuário
+     */
     public String getSenha() {
         return senha;
     }
-/** Método para edita a senha do usario */
+
+    /**
+     * Método para edita a senha do usario
+     */
     public void setSenha(String senha) {
         this.senha = senha;
     }
-/**Método retona a foto do usuario
- * @return String URL da foto do usuario
- */
+
+    /**
+     * Método retona a foto do usuario
+     *
+     * @return String URL da foto do usuario
+     */
     public String getFoto() {
         return foto;
     }
-/** Método para atualira a foto do usuario
- * @param String nova URL da foto
- */
+
+    /**
+     * Método para atualira a foto do usuario
+     *
+     * @param foto String nova URL da foto
+     */
     public void setFoto(String foto) {
         this.foto = foto;
     }
-/** Método para retorna o status do usuário
- * @return boolean status do usuário
- */
-   
-/**Método para edita o status do usuario
- * @param boolean stutus do usuario
- */
+
+    /**
+     * Método para retorna o status do usuário
+     *
+     * @return boolean status do usuário
+     */
+
+    /**
+     * Método para edita o status do usuario
+     *
+     * @param boolean stutus do usuario
+     */
     public void setStatus(boolean status) {
         this.status = status;
     }
-    /** retorna o papel do usuário
+
+    /**
+     * retorna o papel do usuário
+     *
      * @return PapelUser
      */
 
     public PapelUser getPapel() {
         return papel;
     }
-   /** Método para atualizar o papel do Usuário
-    * @param pelUser corespondente a o papel do suario 
-    */
+
+    /**
+     * Método para atualizar o papel do Usuário
+     *
+     * @param pelUser corespondente a o papel do suario
+     */
     public void setPapel(PapelUser papel) {
         this.papel = papel;
     }
@@ -160,9 +202,8 @@ public class Usuario implements Comparable<Usuario>{
 
     @Override
     public int compareTo(Usuario o) {
-        
-      return this.nome.toUpperCase().compareTo(o.getNome().toUpperCase());
+
+        return this.nome.toUpperCase().compareTo(o.getNome().toUpperCase());
     }
-    
 
 }

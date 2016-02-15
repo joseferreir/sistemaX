@@ -5,27 +5,45 @@
  */
 package br.edu.ifpb.conexao;
 
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.Properties;
 
 /**
  *
  * @author José
  */
 public class ConexaoBD {
-     private static Connection conn = null;
 
+    private static Connection conn = null;
+    private static Properties prop = null;
     private static PreparedStatement stm = null;
 
     public static Connection abrirConexao() throws ClassNotFoundException, SQLException {
-        return abrirConexaoBanco("localhost", "padroes", "postgres", "123456");
+        ConexaoBD bd = new ConexaoBD();
+        return bd.abrirConexaoBanco();
     }
+/** recupera as informaões de conexão co banco */
+    public Connection abrirConexaoBanco() throws ClassNotFoundException, SQLException {
+        try {
+//            
+            Properties prop = new Properties();
+            FileInputStream file = new FileInputStream(".//nbproject/connection.properties");
+            prop.load(file);
+            String url = prop.getProperty("url");
+            String user = prop.getProperty("user");
+            String password = prop.getProperty("password");
 
-    public static Connection abrirConexaoBanco(String server, String dataBase, String user, String password) throws ClassNotFoundException, SQLException {
-        Class.forName("org.postgresql.Driver");
-        conn = DriverManager.getConnection("jdbc:postgresql://" + server + ":5432/" + dataBase, user, password);
+            Class.forName("org.postgresql.Driver");
+            this.conn = DriverManager.getConnection(url, user, password);
+        } catch (IOException | ClassNotFoundException | SQLException e) {
+            System.err.println(e.getMessage());
+        }
         return conn;
     }
 
@@ -62,6 +80,5 @@ public class ConexaoBD {
         }
         return false;
     }
-    
-    
+
 }
