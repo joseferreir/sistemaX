@@ -41,7 +41,6 @@ public class AdcionaFeriado extends HttpServlet {
             AdicionaFeriadoBo BO = new AdicionaFeriadoBo();
 
             Feriado feriado = new Feriado(LocalDate.parse(data, DateTimeFormatter.ISO_DATE), nome);
-            JOptionPane.showMessageDialog(null, "crio" + feriado.toString());
             BO.addFeriado(feriado, false);
 
         } catch (FeriadoException e) {

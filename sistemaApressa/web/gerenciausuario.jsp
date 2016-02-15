@@ -46,7 +46,7 @@
         <div class="content-top">
             <div class="content-left">
                 <h2> SistemaApressa</h2>
-                <img src="img/user.jpg" title="foto perfil">
+                <img src="img/logo-ifpb.png" title="foto perfil">
                 <h3> Logado <code><%  out.print( usuario.getPapel()); %></code></h3>
 
             </div>
@@ -55,8 +55,8 @@
                 <h3> <%  out.print( usuario.getNome()); %></h3>
                 <img src="${usuario.foto}">
                 <ul >
-                    <li><a href="#edita" class="perfil">Editar Perfil</a></li>
-                    <li><a href="/logout" class="exit">Sair</a></li>
+                    <li><a href="#" class="perfil">Editar Perfil</a></li>
+                    <li><a href="logout" class="exit">Sair</a></li>
                 </ul>
 
             </div>
@@ -70,7 +70,7 @@
             <button type="button" class="edit" id="" onclick="document.getElementById('user-update').style.display = 'block';">           			
                 <img src="img/edit.jpg" title>
             </button>
-            <form action="ServletExcluirUsuario" method="post" class="delete-user">
+            <form action="#" method="post" class="delete-user">
                 <input class='formContato' type='text' name='delete' id='delete' value='Assunto' onchange="alteraDiv()">
 
                 <button class="remove" type="submit"  >
@@ -126,32 +126,37 @@
 
         <section id="user-update">
             <div class="modal-body">
+<form action="EditaUsuario" method="post" id=""class="form-update">
+        		 <img src="user.jpg" title="" class="photo">
+                <h4>Carregar Foto</h4>
+                <input type="file" name="foto"  class="btn-file" id="btn-file" onchange="document.getElementById('file-falso').value = this.value;">
+                <label class="name">Nome de Usuário</label>
+                <input for=" " type="text" name="name" placeholder="Ex:Antonio Marques" class="" id="name">  
 
-                <form action=" EditaUsuario" method="post" id="edita" class="form-update">
-                    <img src="user.jpg" title="" class="photo">
-                    <h4>Carregar Foto</h4>
-                    <input name="imagem" id="imagem" class="file" type="file" multiple data-min-file-count="1">
+                <label class="senha" >Senha</label>
+                <input for=" " type="password" name="senha" placeholder="Ex: Anderc4ma5" class="" id="senha"> 
 
-                    <label class="name-u">Nome de Usuário</label>
-                    <input for=" " type="text" name="name" placeholder="Ex:Antonio Marques" class="" id="name-u">  
+                <label class="email" >Email</label>
+                <input  type="email" placeholder="Ex: zilderlan@meuemail.com" name="email" id="email"> 
 
-                    <label class="senha-u" >Senha</label>
-                    <input for=" " type="password" name="" placeholder="Ex: Anderc4ma5" class="" id="senha-u"> 
+                <label class="matricula" >Matricula</label>
+                <input  type="text" placeholder="Ex: 123456" name="matricula" id="matricula"> 
 
-                    <label class="email-u" >Email</label>
-                    <input for=" " type="email" placeholder="Ex: zilderlan@meuemail.com" name="" class="" id="email-u"> 
-
-                    <label class="tipo-u" >Tipo</label>
-                    <select for=" " type="select" name="select" class="" id="tipo-u" > 
-                        <option value="">Selecione</option>
-                        <option value="Administrador">Administrador</option>
-                        <option value="Aluno">Aluno</option>
-                    </select>
+                <label class="tipo" >Tipo</label>
+                <select  type="select" name="papel"  id="papel" > 
+                    <option value="">Selecione</option>
+                    <option value="ADMISTRAD0R">admin</option>
+                    <option value="ALUNO">aluno</option>
+                    <option value="ASSISTENTE_SALA">assistente de sala</option>
+                    <option value="PROFESSOR">professor</option>
+                    <option value="MONITOR">monitor</option>
+                </select>
 
 
-                    <input for=" " type="button" name="" value="Cancelar" class="cancel-u" id="" onclick="document.getElementById('user-update').style.display = 'none';"> 
-                    <input for=" " type="submit" name="" value="Cadastrar" class="submit-u" id="">       		
-                </form >
+                <input for=" " type="button" name="" value="Cancelar" class="cancel" id="" onclick="document.getElementById('user-add').style.display = 'none';"> 
+                <input for=" " type="submit" name="" value="Cadastrar" class="submit" id="">     		
+        	</form >
+               
         </section>
 
         <section clas="user-table">

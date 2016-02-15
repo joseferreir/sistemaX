@@ -17,9 +17,9 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author victor
+ * 
  */
-@WebServlet(name = " EditaUsuario", urlPatterns = {"/ EditaUsuario"})
+@WebServlet(name = " EditaUsuario", urlPatterns = {"/EditaUsuario"})
 public class EditaUsuario extends HttpServlet {
 
     private EdiraUsuarioBo atualizarUsuarioBo;
@@ -32,10 +32,15 @@ public class EditaUsuario extends HttpServlet {
             atualizarUsuarioBo = new EdiraUsuarioBo();
         }
 
-        String nome = request.getParameter("nome");
-        String email = request.getParameter("email");
-        String matricula = request.getParameter("matricula");
-        String tipo = request.getParameter("papel");
+         String nome = request.getParameter("name");
+
+            String email = request.getParameter("email");
+
+            String matricula = request.getParameter("matricula");
+
+            String tipo = request.getParameter("papel");
+            
+            String senha = request.getParameter("senha");
         PapelUser papel = null;
 
         if (tipo != null && !tipo.trim().isEmpty()) {
