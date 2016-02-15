@@ -3,11 +3,12 @@
     Created on : 27/01/2016, 16:59:14
     Author     : Zilderlan
 --%>
-<%@page import="br.edu.ifpb.valueObjects.Usuario"%>
+<%@page import="javax.swing.JOptionPane"%>
+<%--<%@page import="br.edu.ifpb.valueObjects.Usuario"%>--%>
 <%@page import="br.edu.ifpb.valueObjects.Usuario"%>
 <%
         Usuario usuario = (Usuario) session.getAttribute("user");
-        String a = usuario.getFoto();
+//        String a = usuario.getFoto();
     %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <html lang="PT-BR">  <!--  -->
@@ -33,14 +34,14 @@
         	<div class="content-top">
         		<div class="content-left">
         			<h2> SistemaApressa</h2>
-                                <img src="${a}">
+                                <img src="img/logo-ifpb.png">
         			<h3> Logado <code><%  out.print( usuario.getPapel()); %></code></h3>
 
         		</div>
 
         		<div class="content-right">
         			<h3> </h3>
-        			<img src="${usuario.foto}">
+                                <img src="img/profiles/reader-default.png" alt="Foto">
                                 <%out.print(usuario.getNome());%>
         			<ul >
         				<li><a href="" class="perfil">Editar Perfil</a></li>

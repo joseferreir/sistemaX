@@ -99,6 +99,14 @@ background: #fff;z-index: 2;}
 	width: 33%; height: 190px; float: left;
 }
 
+#user-remove{display:none;position:absolute;margin: -7% 0 0 18%;padding:5%;
+	width:35%;height:350px;border:2px solid #d0d0d0; border-radius: 10px;
+background: #fff;z-index: 2;}
+
+#user-remove img{
+	width: 33%; height: 190px; float: left;
+}
+
 #user-update img{
 	width: 33%; height: 190px; float: left;
 }

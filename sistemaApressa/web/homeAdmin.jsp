@@ -40,7 +40,7 @@
 
         		<div class="content-right">
         			<h3> </h3>
-        			<img src="${usuario.foto}">
+                                <img src="img/profiles/reader-default.png">
                                 <%out.print(usuario.getNome());%>
         			<ul >
         				<li><a href="" class="perfil">Editar Perfil</a></li>
@@ -71,7 +71,7 @@
        <div class="function-date">
         <ul>
         <h3> Conjunto 2</h3>
-        <li><a href="paginas/gerenciadata.jsp"> Gerenciamento de Feriados</a></li>
+        <li><a href="GerenciarData.jsp"> Gerenciamento de Feriados</a></li>
             <li><a href="">Funcionalidade2</a></li>
             <li><a href="">Funcionalidade3</a></li>
         </ul>

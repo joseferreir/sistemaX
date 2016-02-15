@@ -47,22 +47,23 @@ public class Loga extends HttpServlet {
         Usuario usuario;
         LoginBo BO = new LoginBo();
         usuario = BO.login(login, senha);
-        
+        if (usuario == null) {
+            response.sendRedirect("paginas/errols.jsp");
+        }
 
-        if (usuario != null && usuario.getPapel()== usuario.getPapel().ADMISTRAD0R) {
+        if (usuario != null && usuario.getPapel() == usuario.getPapel().ADMISTRAD0R) {
             HttpSession session = request.getSession();
             session.setAttribute("user", usuario);
             response.sendRedirect("homeAdmin.jsp");
 
-        }
-        else {
-              HttpSession session = request.getSession();
+        } else {
+            HttpSession session = request.getSession();
             session.setAttribute("user", usuario);
             response.sendRedirect("homeNoAdmin.jsp");
-            
-        }       
-        
-      //  response.sendError(500, login);
+
+        }
+
+        //  response.sendError(500, login);
     }
 
 }
