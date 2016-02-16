@@ -1,0 +1,61 @@
+
+<!DOCTYPE html>  <!--  -->
+<html lang="PT-BR">  <!--  -->
+    <head>
+       
+        <title>Login</title>
+
+        <link rel="stylesheet" href="css/login.css" type="text/css" >
+
+
+
+    </head>
+    <script type="text/javascript">
+        function Nova()
+        {
+            location.href = " index.html"
+        }
+    </script> 
+
+    <script type="text/javascript">
+        function Cadastro()
+        {
+            location.href = " cadastroCliente.html"
+        }
+    </script> 
+    <body>
+        <header> <!--  -->
+
+            <img src="img/logo-ifpb.png" title="Logo...">
+
+
+        </header>  <!--  -->
+        <article>
+            <section class="left">
+
+                <form action="Loga" method="post">
+                    <h2>Login</h2>
+                    <p>
+                        <label for="useremail" class="i" data-icon="">Email: </label>
+                        <input type="text" name="login" placeholder="Ex: meuemail@email.com" >
+                    </p>
+                    <p>
+                        <label for="userpassword" class="" data-icon="">Senha: </label>
+                        <input type="password" name="senha" placeholder="Ex: M1nhA53nha" >
+                    </p>
+                    <input class="btn" name="" type="submit" value="Login" >
+                    <!--<input class="btn" name="" type="reset" value="Limpar"  >-->
+                    <a href="gerenciausuario.jsp" class="" >Esqueci a senha</a>
+                    <input type="checkbox" name="" value="" class="check">
+                    <label class="label">Lembrar</label>
+
+                </form>
+
+            </section>
+
+        </article>
+        <footer >   
+            <p>&copy Todos os direitos reservados</p>
+        </footer >  <!--  -->
+    </body>
+</html>
