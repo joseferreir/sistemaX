@@ -16,6 +16,6 @@ CREATE TABLE Feriado(
 	nome VARCHAR(30) NOT NULL UNIQUE,
 	PRIMARY KEY (nome,data)
 );
--- Usuário padrão
+-- Usuário padrão 1
 
 INSERT INTO usuario (matricula , nomeUsuario, email,senha,foto, papel) VALUES('000000', 'admin', 'admin@gmail.com', 'admin153Chg%','jose2.jpg' ,'ADMISTRAD0R');
